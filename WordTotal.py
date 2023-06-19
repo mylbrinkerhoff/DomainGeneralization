@@ -20,7 +20,7 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('cmudict')
 
 # File path of the .ttl file
-file_path = 'text.txt'
+file_path = 'path/to/your/file.ttl'
 
 # Initialize the POS tagger and pronunciation dictionary
 pos_tagger = nltk.pos_tag
@@ -75,9 +75,13 @@ output_file = 'word_info.csv'
 with open(output_file, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Word', 'POS', 'Pronunciation (IPA)', 'Frequency'])
-    for word, count in frequency.items():
+    for index, (word, count) in enumerate(frequency.items(), 1):
         pos_tag = pos_tags[words.index(word)]
         pronunciation = " ".join(pronunciations_ipa[words.index(word)])
+
+        # Print the current line being written to the CSV file
+        print(f"Writing line {index} to CSV...")
+
         writer.writerow([word, pos_tag, pronunciation, count])
 
 print(f"The results have been exported to {output_file}.")
