@@ -27,16 +27,16 @@ word_freq = defaultdict(int)
 phonetic_transcriptions = {}
 
 # Initialize a dictionary to store the lemmas
-lemmas = {}
+# lemmas = {}
 
 # Initialize a dictionary to store the number of morphemes
-num_morphemes = {}
+# num_morphemes = {}
 
 # Initialize a dictionary to store the part of speech
 part_of_speech = {}
 
 # Initialize a dictionary to store the neighborhood density for each word
-neighborhood_density = {}
+# neighborhood_density = {}
 
 # Iterate through the XML entries
 for entry in root.findall("./entries/entry"):
@@ -88,16 +88,16 @@ data = [
         "word": word,
         "frequency": freq,
         "phonetic_transcription": phonetic_transcriptions[word],
-        "lemma": lemmas[word],
-        "num_morphemes": num_morphemes[word],
-        "part_of_speech": part_of_speech[word],
-        "neighborhood_density": neighborhood_density[word]
+        # "lemma": lemmas[word],
+        # "num_morphemes": num_morphemes[word],
+        "part_of_speech": part_of_speech[word] #,
+        # "neighborhood_density": neighborhood_density[word]
     }
     for word, freq in sorted_freq
 ]
 
 # Define the CSV fieldnames
-fieldnames = ["word", "frequency", "phonetic_transcription", "lemma", "num_morphemes", "part_of_speech", "neighborhood_density"]
+fieldnames = ["word", "frequency", "phonetic_transcription", "part_of_speech"]
 
 # Save the data as a CSV file
 with open("word_frequencies.csv", "w", newline="", encoding="utf-8") as csvfile:
