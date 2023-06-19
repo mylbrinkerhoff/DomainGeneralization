@@ -21,6 +21,7 @@ input_words = ['part', 'party', 'people', 'king', 'camp', 'team', 'ten', 'tennis
 frequency_data = {}
 with open('frequency_data.csv', 'r') as file:
     reader = csv.reader(file)
+    next(reader)  # Skip the header row
     for row in reader:
         word = row[0]
         frequency = int(row[1])
