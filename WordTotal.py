@@ -6,8 +6,6 @@ and returns a csv file that has removed the English stopwords and lists the freq
 
 M. Brinkerhoff * UCSC DomainGeneralization * 2023-06-19 (m)
 '''
-
-
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -21,7 +19,7 @@ nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('cmudict')
 
-# File path of the file
+# File path of the .ttl file
 file_path = 'text.txt'
 
 # Initialize the POS tagger and pronunciation dictionary
@@ -59,12 +57,15 @@ def arpabet_to_ipa(pronunciation):
 pos_tags = []
 pronunciations = []
 
-for word in words:
+for i, word in enumerate(words):
     pos_tag = pos_tagger([word])[0][1]
     pronunciation = pronunciation_dict.get(word.lower(), [[]])[0]
 
     pos_tags.append(pos_tag)
     pronunciations.append(pronunciation)
+
+    # Print the current line number
+    print(f"Processing line {i + 1}...")
 
 # Convert pronunciations to IPA
 pronunciations_ipa = [arpabet_to_ipa(pronunciation) for pronunciation in pronunciations]
